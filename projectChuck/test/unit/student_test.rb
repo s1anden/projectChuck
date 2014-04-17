@@ -261,6 +261,16 @@ class StudentTest < ActiveSupport::TestCase
       assert_equal ["Ark","Hoover", "Gruberman","Gruberman","Gruberman","Gruberman", "Hanson","Marcus","Henderson"], Student.by_grade.alphabetical.map(&:last_name)
     end
 
+    should "have a method to display a student's gender as a string" do
+      assert_equal "Male", @noah.sex
+      assert_equal "Female", @jen.sex
+    end
+
+    should "have a method to display a student's registration for the current year" do
+      assert_equal "Miami Heat", @ed.current_reg.team.name
+      assert_equal nil, @julie.current_reg
+    end
+
     should "deactivate not destroy student and associated registrations" do
       @ed.destroy
       @ed.reload
