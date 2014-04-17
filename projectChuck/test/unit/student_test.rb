@@ -260,6 +260,20 @@ class StudentTest < ActiveSupport::TestCase
       assert_equal ["Ark","Hoover", "Gruberman","Gruberman","Gruberman","Hanson","Henderson","Marcus"], Student.by_grade.alphabetical.all.map(&:last_name)
       assert_equal ["Ark","Hoover", "Gruberman","Gruberman","Gruberman","Gruberman", "Hanson","Marcus","Henderson"], Student.by_grade.alphabetical.map(&:last_name)
     end
+
+    should "deactivate not destroy student and associated registrations" do
+      @ed.destroy
+      @ed.reload
+      deny @ed.active
+      deny @ed_reg1.active
+      deny @ed_reg2.active
+    end
+
+    should "deactivate student but not err if no registrations" do
+      @julie.destroy
+      @julie.reload
+      deny @julie.active
+    end
   end
 	
 end
