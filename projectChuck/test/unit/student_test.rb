@@ -102,7 +102,7 @@ class StudentTest < ActiveSupport::TestCase
 	should allow_value(false).for(:active)
 	should_not allow_value(nil).for(:active)
 
-    context "Creating a student context" do
+  context "Creating a student context" do
     setup do 
       create_household_context
       create_guardian_context
@@ -151,7 +151,6 @@ class StudentTest < ActiveSupport::TestCase
     should "have working age method" do 
       assert_equal 14, @howard.age
       assert_equal 9, @noah.age
-      assert_equal 16, @julie.age
       assert_equal 18, @julie.age
     end
     
@@ -163,17 +162,19 @@ class StudentTest < ActiveSupport::TestCase
     should "not allow student to be added without a parent" do
       # a student without a household cannot have a guardian
       # thus a student without a household should also not be a valid student
-      # @brent = FactoryGirl.build(:student, household: nil)
-      # deny @brent.valid?
+      @brent = FactoryGirl.build(:student)
+      deny @brent.valid?
       
       @household1 = FactoryGirl.build(:household)
       @household2 = FactoryGirl.build(:household, street:"5032 Forbes Ave")
-      @henry = FactoryGirl.build(:guardian, household:@household1, first_name:"Henry", last_name:"Michaels")
-      @laura = FactoryGirl.build(:student, gender:false, household:@household1)
+      @henry = FactoryGirl.build(:guardian, household:@household1, first_name:"Henry", last_name:"Michaels", email: "hmichaels@gmail.com")
+      @laura = FactoryGirl.build(:student, gender:false, household:@household2)
+      @tina = FactoryGirl.build(:student, gender:false, household:@household2, first_name: "Tina")
 
       # @brent.household = @household2
       assert_equal true, @laura.valid?
       # deny @brent.valid?
+
     end
     
     should "have class method for finding students eligible for a particular team" do
@@ -269,6 +270,7 @@ class StudentTest < ActiveSupport::TestCase
     should "have a method to display a student's registration for the current year" do
       assert_equal "Miami Heat", @ed.current_reg.team.name
       assert_equal nil, @julie.current_reg
+      assert_equal nil, @fred.current_reg
     end
 
     should "deactivate not destroy student and associated registrations" do

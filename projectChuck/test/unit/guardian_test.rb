@@ -145,6 +145,17 @@ class GuardianTest < ActiveSupport::TestCase
     should "have scope for inactive guardians" do 
       assert_equal ["Bambridge"], Guardian.inactive.alphabetical.all.map(&:last_name)
     end
+
+    should "not allow two guardians to have the same email" do
+      @bob = FactoryGirl.build(:guardian, first_name: "Bob")
+      deny @bob.valid?
+    end
+
+    should "deactivate, not delete a guardian" do
+      @mary.destroy
+      @mary.reload
+      deny @mary.active
+    end
   end
 	
 end

@@ -142,6 +142,7 @@ class ActiveSupport::TestCase
   def create_registration_context
     @ed_reg1 = FactoryGirl.create(:registration, student: @ed, date: 1.year.ago)
     @ed_reg2 = FactoryGirl.create(:registration, student: @ed, date: Date.today, team: @heat)
+    @julie_reg = FactoryGirl.create(:registration, student: @julie, date: 1.year.ago)
   end 
 
   def remove_registration_context
