@@ -1,10 +1,13 @@
 class Guardian < ActiveRecord::Base
-  attr_accessible :active, :cell_phone, :day_phone, :dob, :email, :first_name, :gender, :household_id, :last_name, :receive_texts
-
   has_one :user
   belongs_to :household
   has_many :students, through: :household
 
+  accepts_nested_attributes_for :household
+  accepts_nested_attributes_for :students
+  attr_accessible :household_attributes, :students_attributes, :active, :cell_phone, :day_phone, :dob, :email, :first_name, :gender, :household_id, :last_name, :receive_texts
+
+  
   #Callbacks
   before_save :reformat_cell
   before_save :reformat_phone
@@ -23,6 +26,7 @@ class Guardian < ActiveRecord::Base
   scope :alphabetical, order('last_name, first_name')
   scope :active, where('guardians.active = ?', true)
   scope :inactive, where('guardians.active = ?', false)
+  scope :receive_text_notifications, where('receive_texts = ?', true)
 
   # Other methods
   def name
