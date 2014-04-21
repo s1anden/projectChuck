@@ -144,12 +144,15 @@ class ActiveSupport::TestCase
   def create_registration_context
     @ed_reg1 = FactoryGirl.create(:registration, student: @ed, date: 1.year.ago)
     @ed_reg2 = FactoryGirl.create(:registration, student: @ed, date: Date.today, report_card: nil, team: @heat)
-    @julie_reg = FactoryGirl.create(:registration, student: @julie, date: 1.year.ago)
-    @noah_reg = FactoryGirl.create(:registration, student: @noah)
+    @julie_reg = FactoryGirl.create(:registration, student: @julie, proof_of_insurance: nil, team: @mavs, date: 1.year.ago)
+    @noah_reg = FactoryGirl.create(:registration, student: @noah, physicaL: nil, team: @pistons)
   end 
 
   def remove_registration_context
-
+    @ed_reg1.delete
+    @ed_reg2.delete
+    @julie_reg.delete
+    @noah_reg.delete
   end
 
   def create_user_context
