@@ -273,6 +273,11 @@ class StudentTest < ActiveSupport::TestCase
       assert_equal nil, @fred.current_reg
     end
 
+    should "have a method to show if a student has submitted their report card" do
+      assert_equal false, @noah.missing_report_card
+      assert_equal true, @ed.missing_report_card
+    end
+
     should "deactivate not destroy student and associated registrations" do
       @ed.destroy
       @ed.reload

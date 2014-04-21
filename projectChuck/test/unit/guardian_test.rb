@@ -146,6 +146,11 @@ class GuardianTest < ActiveSupport::TestCase
       assert_equal ["Bambridge"], Guardian.inactive.alphabetical.all.map(&:last_name)
     end
 
+    should "have a method to display a guardian's gender as a string" do
+      assert_equal "Male", @eric.sex
+      assert_equal "Female", @mary.sex
+    end
+
     should "not allow two guardians to have the same email" do
       @bob = FactoryGirl.build(:guardian, first_name: "Bob")
       deny @bob.valid?

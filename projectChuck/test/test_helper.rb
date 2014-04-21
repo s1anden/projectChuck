@@ -40,6 +40,8 @@ class ActiveSupport::TestCase
     @mary = FactoryGirl.create(:guardian, household: @grub)
     #45 y.o. Eric Gruberman
     @eric = FactoryGirl.create(:guardian, household: @grub, first_name:"Eric", email: "eric.grub@gmail.com", dob:45.years.ago.to_date, cell_phone:"412-666-7890")
+    #68 y.o. Bonny Gruberman
+    @bonny = FactoryGirl.create(:guardian, household: @grub, first_name: "Bonny", email: "bonny.grub@gmail.com", dob:68.years.ago.to_date)
     #28 y.o. Alexandra Mill
     @alex = FactoryGirl.create(:guardian, household: @mill, first_name: "Alexandra", last_name:"Mill", email: "amill@yahoo.com", dob:28.years.ago.to_date, cell_phone:nil, day_phone:"412-281-8080")
     #20 y.o. Leo Sutherland
@@ -141,8 +143,9 @@ class ActiveSupport::TestCase
 
   def create_registration_context
     @ed_reg1 = FactoryGirl.create(:registration, student: @ed, date: 1.year.ago)
-    @ed_reg2 = FactoryGirl.create(:registration, student: @ed, date: Date.today, team: @heat)
+    @ed_reg2 = FactoryGirl.create(:registration, student: @ed, date: Date.today, report_card: nil, team: @heat)
     @julie_reg = FactoryGirl.create(:registration, student: @julie, date: 1.year.ago)
+    @noah_reg = FactoryGirl.create(:registration, student: @noah)
   end 
 
   def remove_registration_context
