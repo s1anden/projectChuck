@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140404204511) do
+ActiveRecord::Schema.define(:version => 20140417061207) do
 
   create_table "brackets", :force => true do |t|
     t.integer  "tournament_id"
