@@ -1,13 +1,6 @@
 class Registration < ActiveRecord::Base
   # Prof H suggested moving proof of insurance to household. 
   # Can someone write a migration for that and move the tests and code here appropriately.
-<<<<<<< HEAD
-
-
-=======
-  # Make a migration to change t_shirt_size to jersey_size
-  
->>>>>>> testBranch
   #Relationships
   belongs_to :student
   belongs_to :team
