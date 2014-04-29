@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20140417061207) do
     t.boolean  "active",              :default => true
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
+    t.string   "county"
   end
 
   create_table "registrations", :force => true do |t|
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20140417061207) do
     t.boolean  "active",                                 :default => true
     t.datetime "created_at",                                               :null => false
     t.datetime "updated_at",                                               :null => false
+    t.string   "email"
   end
 
   create_table "teams", :force => true do |t|
