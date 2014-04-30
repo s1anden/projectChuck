@@ -50,6 +50,14 @@ class TeamTest < ActiveSupport::TestCase
 	      remove_tournament_context
 	    end
 
+	    should "have a scope to list teams alphabetically" do
+	    	assert_equal ["Dallas Mavericks", "Detroit Pistons", "Los Angeles Lakers", "Miami Heat", "New York Knicks", "Orlando Magic", "Washington Wizards"], Team.alphabetical.map[&:name]
+	    end
+
+	    should "have a scope to list teams by bracket" do
+	    	assert_equal ["Detroit Pistons", "Washington Wizards", "Miami Heat", "Orlando Magic", "Los Angeles Lakers", "New York Knicks", "Dallas Mavericks"], Team.by_bracket
+	    end
+
 	    should "have a custom method to show number of students on the team" do
 	    	@temp = FactoryGirl.build(:student, household: @grub, first_name: "Zedd", active: false)
 	    	@temp_reg = FactoryGirl.build(:registration, student: @temp, team: @heat)

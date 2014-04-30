@@ -93,6 +93,7 @@ class ActiveSupport::TestCase
 
   def create_tournament_context
     @tourn = FactoryGirl.create(:tournament)
+    @tourn2 = FactoryGirl.create(:tournament, start_date: 52.weeks.from_now.to_date, end_date: 60.weeks.from_now.to_date)
   end
 
   def remove_tournament_context
@@ -124,6 +125,8 @@ class ActiveSupport::TestCase
     @wizards = FactoryGirl.create(:team, bracket: @boys10to12, name: "Washington Wizards")
     # Boys 13 to 15 team
     @heat = FactoryGirl.create(:team, bracket: @boys13to15, name: "Miami Heat")
+    # Boys 13 to 15 team
+    @magic = FactoryGirl.create(:team, bracket: @boys13to15, name: "Orlando Magic")
     # Boys 16 to 18 team
     @lakers = FactoryGirl.create(:team, bracket: @boys16to18, name: "Los Angeles Lakers")
     # Little Girls team
